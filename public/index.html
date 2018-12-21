@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>SocketIO Client</title>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+  <div id="arrow"></div>
+  <canvas id="gl" width="640" height="480"></canvas>
+
+
+  <!-- Client Code -->
+  <script type="text/javascript">
+    // Get WebSocket
+    var socket = io();
+    // Get DOM elements
+    var arrow = document.getElementById("arrow");
+    var a, b, c;
+
+
+    window.addEventListener("deviceorientation", orientationHandler, false);
+    function orientationHandler(event) {
+      text = "";
+      a = Math.round(event.alpha);
+      b = Math.round(event.beta);
+      c = Math.round(event.gamma);
+      text += "左右旋转：rotate alpha{" + xr + "deg)<p>";
+      text += "前后旋转：rotate beta{" +  + "deg)<p>";
+      text += "扭转设备：rotate gamma{" + Math.round(event.gamma) + "deg)<p>";
+      arrow.innerHTML = text;
+    }
+
+    setInterval(function(){
+      socket.emit('listener', {alpha: a, 
+        beta: b,
+        gamma: c});
+    }, 30)
+  </script>
+</body>
+
+</html>

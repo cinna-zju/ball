@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Desktop</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="./sketch.js"></script>
+  <script src="./p5.min.js"></script>
+
+</head>
+
+<body>
+
+  <div id="arrow">no data</div>
+
+
+
+  <!-- Client Code -->
+  <script type="text/javascript">
+    var socket = io();
+    var a, b, c, x, y;
+
+    var arrow = document.getElementById("arrow");
+    socket.on('get', function (msg) {
+      //console.log(msg);
+      a = msg.alpha;
+      b = msg.beta;
+      c = msg.gamma;
+      x = 360-c;
+      y = 240-a/2;
+      arrow.innerHTML = x + ", " + y;
+
+    })
+  </script>
+
+</body>
+
+</html>
