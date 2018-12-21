@@ -24,12 +24,13 @@
     var arrow = document.getElementById("arrow");
     socket.on('get', function (msg) {
       //console.log(msg);
+      id = msg.id;
       a = msg.alpha;
       b = msg.beta;
       c = msg.gamma;
       x = 360-c;
       y = 240-a/2;
-      arrow.innerHTML = x + ", " + y;
+      arrow.innerHTML = id + ": " + x + ", " + y;
 
     })
   </script>

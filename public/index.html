@@ -19,25 +19,39 @@
     // Get DOM elements
     var arrow = document.getElementById("arrow");
     var a, b, c;
+    var a5 = 0, b5 = 0, c5 = 0, times = 0;
+    
 
 
     window.addEventListener("deviceorientation", orientationHandler, false);
     function orientationHandler(event) {
       text = "";
-      a = Math.round(event.alpha);
-      b = Math.round(event.beta);
-      c = Math.round(event.gamma);
-      text += "左右旋转：rotate alpha{" + xr + "deg)<p>";
-      text += "前后旋转：rotate beta{" +  + "deg)<p>";
-      text += "扭转设备：rotate gamma{" + Math.round(event.gamma) + "deg)<p>";
+      a = event.alpha;
+      b = event.beta;
+      c = event.gamma;
+      a5+=a;
+      b5+=b;
+      c5+=c;
+      times += 1.0;
+      text += "左右旋转：rotate alpha{" + a + "deg)<p>";
+      text += "前后旋转：rotate beta{" + b + "deg)<p>";
+      text += "扭转设备：rotate gamma{" + c + "deg)<p>";
       arrow.innerHTML = text;
     }
 
     setInterval(function(){
-      socket.emit('listener', {alpha: a, 
-        beta: b,
-        gamma: c});
-    }, 30)
+      if(times > 3){
+        socket.emit('listener', {id: socket.id,
+          alpha: Math.round(a5/times), 
+        beta: Math.round(b5/ times),
+        gamma: Math.round(c5/times)});
+
+        a5 = b5 = c5 = times = 0;
+      }
+      
+    }, 20);
+
+
   </script>
 </body>
 
