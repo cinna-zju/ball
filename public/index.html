@@ -21,6 +21,8 @@
     var a, b, c;
     var a5 = 0, b5 = 0, c5 = 0, times = 0;
     
+    // add accel variable
+    var accX;
 
 
     window.addEventListener("deviceorientation", orientationHandler, false);
@@ -29,6 +31,8 @@
       a = event.alpha;
       b = event.beta;
       c = event.gamma;
+      // accX = event.acceleration.x;
+
       a5+=a;
       b5+=b;
       c5+=c;
@@ -37,19 +41,23 @@
       text += "前后旋转：rotate beta{" + b + "deg)<p>";
       text += "扭转设备：rotate gamma{" + c + "deg)<p>";
       arrow.innerHTML = text;
-    }
 
-    setInterval(function(){
-      if(times > 3){
+       if(times > 7.0){
         socket.emit('listener', {id: socket.id,
           alpha: Math.round(a5/times), 
         beta: Math.round(b5/ times),
-        gamma: Math.round(c5/times)});
-
+        gamma: Math.round(c5/times), 
+      });
         a5 = b5 = c5 = times = 0;
+
+
       }
-      
-    }, 20);
+
+
+    }
+     
+  
+  
 
 
   </script>

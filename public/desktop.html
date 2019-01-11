@@ -19,7 +19,7 @@
   <!-- Client Code -->
   <script type="text/javascript">
     var socket = io();
-    var a, b, c, x, y;
+    var a, b, c, x, y, accX;
 
     var arrow = document.getElementById("arrow");
     socket.on('get', function (msg) {
@@ -28,9 +28,11 @@
       a = msg.alpha;
       b = msg.beta;
       c = msg.gamma;
+      //added for accel
+      t = msg.accX;
       x = 360-c;
       y = 240-a/2;
-      arrow.innerHTML = id + ": " + x + ", " + y;
+      arrow.innerHTML = id + "alpha: " + a + "beta: " + b +"gamma:"+c;
 
     })
   </script>
