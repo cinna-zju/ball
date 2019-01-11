@@ -9,6 +9,7 @@
 
 <body>
   <div id="arrow"></div>
+  <div id="acc"></div>
   <canvas id="gl" width="640" height="480"></canvas>
 
 
@@ -45,15 +46,36 @@
        if(times > 7.0){
         socket.emit('listener', {id: socket.id,
           alpha: Math.round(a5/times), 
-        beta: Math.round(b5/ times),
-        gamma: Math.round(c5/times), 
+          beta: Math.round(b5/ times),
+          gamma: Math.round(c5/times),
+          accX: Math.round(accX),
+
       });
         a5 = b5 = c5 = times = 0;
-
-
       }
 
+    }
 
+    var sumAccX = 0;
+    var t = 0;
+
+    window.addEventListener("devicemotion", motionHandler, false);
+    function motionHandler(event){
+      accX = event.acceleration.x;
+      acc.innerHTML = accX + "m/s2";
+
+      // sumAccX += accX;
+      // t += 1.0;
+
+      // if(t > 7.0){
+      //   socket.emit('listener',{
+      //     id: socket.id,
+      //     accX: Math.round(accX/t),
+      //   });
+      //   sumAccX = t = 0;
+      // }
+
+  
     }
      
   

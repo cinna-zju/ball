@@ -7,6 +7,7 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="./sketch.js"></script>
   <script src="./p5.min.js"></script>
+  <script src="./p5.dom.min.js"></script>
 
 </head>
 
@@ -29,10 +30,8 @@
       b = msg.beta;
       c = msg.gamma;
       //added for accel
-      t = msg.accX;
-      x = 360-c;
-      y = 240-a/2;
-      arrow.innerHTML = id + "alpha: " + a + "beta: " + b +"gamma:"+c;
+      accX = msg.accX;
+      arrow.innerHTML = id + "alpha: " + a + "beta: " + b +"gamma:"+c +"acc_x:"+accX;
 
     })
   </script>
