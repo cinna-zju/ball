@@ -4,7 +4,9 @@ var id1 = "", id2 = "";
 
 var gif;
 function setup() {
-  createCanvas(720, 480);
+  var myCanvas = createCanvas(700, 500);
+  myCanvas.parent('canvas');
+
   socket = io();
   socket.on('get', function (msg) {
     //TODO: for multiuser
@@ -45,7 +47,8 @@ function map(input, x1, x2, y1, y2){
 }
 
 function draw() {
-  clear();  
+  clear();
+  background(255);
   out_angle = map(c, -80, 80, 0, 720);
   ellipse(out_angle, 240, 30, 30);
   if (accX < -8) {
