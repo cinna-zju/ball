@@ -36,7 +36,7 @@ p{
 }
 
 .button:hover{
-  color:#000000;
+  color:#006284;
   background-color:#FFFFFF;
 
 }
@@ -50,7 +50,7 @@ p{
 
 
 #canvas{
-  width: 700px;
+  width: 800px;
   height: 500px;
   display: inline-block;
   border: 2px solid #FFFFFF;
@@ -67,6 +67,6 @@ p{
 }
 
 #container{
-  width: 1200px;
+  width: 1300px;
   height: 450px;
 }

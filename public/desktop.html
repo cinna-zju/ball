@@ -16,7 +16,7 @@
 
 <body>
   <div>
-    <h1>Painthrow!</h1>
+    <h1>Paint!</h1>
     <a class="button">btn1</a>
     <a class="button">btn2</a>
   </div>
@@ -35,20 +35,24 @@
   <!-- Client Code -->
   <script type="text/javascript">
     var socket = io();
-    var a, b, c, x, y, accX;
+    var a, b, c, x, y, accX, color;
 
     var arrow = document.getElementById("arrow");
     socket.on('get', function (msg) {
       //console.log(msg);
-      id = msg.id;
-      a = msg.alpha;
-      b = msg.beta;
-      c = msg.gamma;
+      id = msg.id,
+      a = msg.alpha,
+      b = msg.beta,
+      c = msg.gamma,
       //added for accel
-      accX = msg.accX;
-      arrow.innerHTML = id + "alpha: " + a + "beta: " + b +"gamma:"+c +"acc_x:"+accX;
-
+      accX = msg.accX,
+      color = msg.color
     })
+
+    setInterval(()=>{
+      arrow.innerHTML = id + "alpha: " + a + "beta: " + b +"gamma:"+c +"acc_x:"+accX + "color: "+ color;
+    }, 50);
+
   </script>
 
 </body>

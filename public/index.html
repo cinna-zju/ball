@@ -5,12 +5,28 @@
   <meta charset="utf-8">
   <title>SocketIO Client</title>
   <script src="/socket.io/socket.io.js"></script>
+  <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body>
   <div id="arrow"></div>
   <div id="acc"></div>
-  <canvas id="gl" width="640" height="480"></canvas>
+
+  <div>
+    <button>Save</button>
+    <button>btn2</button>
+  </div>
+
+  <!-- <canvas id="gl" width="640" height="480"></canvas> -->
+  <div>
+    <button id='red' onClick='changeColor(this.id)'></button>
+  </div>
+  <div>
+    <button id='yellow' onClick="changeColor(this.id)"></button>
+  </div>
+  <div>
+    <button id='blue' onClick="changeColor(this.id)"></button>
+  </div>
 
 
   <!-- Client Code -->
@@ -20,7 +36,7 @@
     // Get DOM elements
     var arrow = document.getElementById("arrow");
     var a, b, c;
-    var a5 = 0, b5 = 0, c5 = 0, times = 0;
+    var a5 = 0, b5 = 0, c5 = 0, times = 0,  color="red";
     
     // add accel variable
     var accX;
@@ -49,6 +65,7 @@
           beta: Math.round(b5/ times),
           gamma: Math.round(c5/times),
           accX: Math.round(accX),
+          color: color,
 
       });
         a5 = b5 = c5 = times = 0;
@@ -74,14 +91,13 @@
       //   });
       //   sumAccX = t = 0;
       // }
-
-  
     }
-     
-  
-  
 
 
+    function changeColor(id){
+      color = id; 
+
+    }
   </script>
 </body>
 

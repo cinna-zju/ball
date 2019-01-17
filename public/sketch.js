@@ -4,7 +4,7 @@ var id1 = "", id2 = "";
 
 var gif;
 function setup() {
-  var myCanvas = createCanvas(700, 500);
+  var myCanvas = createCanvas(800, 500);
   myCanvas.parent('canvas');
 
   socket = io();
@@ -52,7 +52,7 @@ function draw() {
   out_angle = map(c, -80, 80, 0, 720);
   ellipse(out_angle, 240, 30, 30);
   if (accX < -8) {
-    gif = createImg('./p1.gif');
+    gif = createImg('./g1.gif');
     gif.position(out_angle - 400, 40);
   }
 
