@@ -13,7 +13,7 @@
   <div id="acc"></div>
 
   <div>
-    <button>Save</button>
+    <button id='save' onClick='save()'>Save</button>
     <button>btn2</button>
   </div>
 
@@ -36,7 +36,7 @@
     // Get DOM elements
     var arrow = document.getElementById("arrow");
     var a, b, c;
-    var a5 = 0, b5 = 0, c5 = 0, times = 0,  color="red";
+    var a5 = 0, b5 = 0, c5 = 0, times = 0, color="red", isSave=false;
     
     // add accel variable
     var accX;
@@ -44,7 +44,7 @@
 
     window.addEventListener("deviceorientation", orientationHandler, false);
     function orientationHandler(event) {
-      text = "";
+      // text = "";
       a = event.alpha;
       b = event.beta;
       c = event.gamma;
@@ -54,10 +54,10 @@
       b5+=b;
       c5+=c;
       times += 1.0;
-      text += "左右旋转：rotate alpha{" + a + "deg)<p>";
-      text += "前后旋转：rotate beta{" + b + "deg)<p>";
-      text += "扭转设备：rotate gamma{" + c + "deg)<p>";
-      arrow.innerHTML = text;
+      // text += "左右旋转：rotate alpha{" + a + "deg)<p>";
+      // text += "前后旋转：rotate beta{" + b + "deg)<p>";
+      // text += "扭转设备：rotate gamma{" + c + "deg)<p>";
+      // arrow.innerHTML = text;
 
        if(times > 7.0){
         socket.emit('listener', {id: socket.id,
@@ -66,6 +66,7 @@
           gamma: Math.round(c5/times),
           accX: Math.round(accX),
           color: color,
+          isSave: isSave,
 
       });
         a5 = b5 = c5 = times = 0;
@@ -96,7 +97,10 @@
 
     function changeColor(id){
       color = id; 
+    }
 
+    function save(){
+      isSave = true;
     }
   </script>
 </body>

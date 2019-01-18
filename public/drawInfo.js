@@ -3,7 +3,7 @@ window.onload = function(){
   var ctx = canvas.getContext("2d");
   var socket;
 
-  var id;
+  let id;
 
   socket = io();
   socket.on('get', function (msg) {

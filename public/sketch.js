@@ -1,12 +1,14 @@
+
 var socket; 
-var a1, b1, c1, a2, b2, c2, angle, slope;
+var a1, b1, c1, a2, b2, c2, angle, slope, color, isSave;
 var id1 = "", id2 = "";
 
 var gif;
+
 function setup() {
   var myCanvas = createCanvas(800, 500);
   myCanvas.parent('canvas');
-
+  color = 'red';
   socket = io();
   socket.on('get', function (msg) {
     //TODO: for multiuser
@@ -33,8 +35,10 @@ function setup() {
     b = msg.beta;
     c = msg.gamma;
     accX = msg.accX;
+    color = msg.color;
+    isSave = msg.isSave;
 
-})
+  })
 }
 
 //define function to do mapping
@@ -52,12 +56,20 @@ function draw() {
   out_angle = map(c, -80, 80, 0, 720);
   ellipse(out_angle, 240, 30, 30);
   if (accX < -8) {
-    gif = createImg('./g1.gif');
-    gif.position(out_angle - 400, 40);
+    switch (color) {
+      case 'red':
+        gif = createImg('./R1.gif'); break;
+      case 'yellow':
+        gif = createImg('./Y1.gif'); break;
+    }
+    gif.position(out_angle - 400, 140);
   }
 
-  //ellipse(360-c2, 240 , 30, 30);
-  // rect(360 - b2, 240, 50, 50);    
-  
+  if (isSave === true) {
+    //saveCanvas('myCanva', 'jpg');
+    isSave = false;
+  }
+
+
   
 }

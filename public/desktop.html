@@ -28,25 +28,21 @@
 
   </div>
 
-
-
-
-
   <!-- Client Code -->
   <script type="text/javascript">
     var socket = io();
-    var a, b, c, x, y, accX, color;
+    var a, b, c, x, y, accX, color, id;
 
     var arrow = document.getElementById("arrow");
     socket.on('get', function (msg) {
       //console.log(msg);
-      id = msg.id,
-      a = msg.alpha,
-      b = msg.beta,
-      c = msg.gamma,
+      id = msg.id;
+      a = msg.alpha;
+      b = msg.beta;
+      c = msg.gamma;
       //added for accel
-      accX = msg.accX,
-      color = msg.color
+      accX = msg.accX;
+      color = msg.color;
     })
 
     setInterval(()=>{
