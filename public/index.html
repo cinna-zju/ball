@@ -14,20 +14,20 @@
 
   <div>
     <button id='save' onClick='save()'>Save</button>
-    <button>btn2</button>
   </div>
+  
+
 
   <!-- <canvas id="gl" width="640" height="480"></canvas> -->
   <div>
     <button id='red' onClick='changeColor(this.id)'></button>
-  </div>
-  <div>
     <button id='yellow' onClick="changeColor(this.id)"></button>
-  </div>
-  <div>
     <button id='blue' onClick="changeColor(this.id)"></button>
   </div>
 
+  <div>
+    <button id='lock' onClick='lock()'>lock</button>
+  </div>
 
   <!-- Client Code -->
   <script type="text/javascript">
@@ -36,7 +36,8 @@
     // Get DOM elements
     var arrow = document.getElementById("arrow");
     var a, b, c;
-    var a5 = 0, b5 = 0, c5 = 0, times = 0, color="red", isSave=false;
+    var a5 = 0, b5 = 0, c5 = 0, times = 0;
+    var color="red", isSave=false, isLock = false;  
     
     // add accel variable
     var accX;
@@ -67,6 +68,7 @@
           accX: Math.round(accX),
           color: color,
           isSave: isSave,
+          isLock: isLock,
 
       });
         a5 = b5 = c5 = times = 0;
@@ -101,6 +103,11 @@
 
     function save(){
       isSave = true;
+    }
+
+    function lock(){
+      isLock = !isLock;
+
     }
   </script>
 </body>
