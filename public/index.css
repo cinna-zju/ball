@@ -31,8 +31,12 @@ body{
   background-color: #ff8d00;
   border: none;
   margin: 2em;
+}
 
-
+#lock{
+  width: 400px;
+  height:400px;
+  background-color: aqua;
 }
 
 button{

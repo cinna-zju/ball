@@ -1,6 +1,7 @@
 
 var socket; 
-var a1, b1, c1, a2, b2, c2, angle, slope, color, isSave;
+var a1, b1, c1, a2, b2, c2, angle, slope, color, isSave, out_angle;
+let isLock;
 var id1 = "", id2 = "";
 
 var gif;
@@ -10,6 +11,7 @@ function setup() {
   myCanvas.parent('canvas');
   color = 'red';
   socket = io();
+  out_angle = 400;
   socket.on('get', function (msg) {
     //TODO: for multiuser
     // if (id1 === "") {
@@ -37,6 +39,7 @@ function setup() {
     accX = msg.accX;
     color = msg.color;
     isSave = msg.isSave;
+    isLock = msg.isLock;
 
   })
 }
@@ -53,10 +56,11 @@ function map(input, x1, x2, y1, y2){
 function draw() {
   clear();
   background(255);
-  out_angle = map(a, -80, 80, 0, 720); //this is for y orientation
-  ellipse(out_angle, 30, 30); //TEST: fix x
+  if (isLock == false) {
+    out_angle = map(c, -80, 80, 0, 720);
+  }
+  ellipse(out_angle, 240, 30, 30);    
 
-  //TEST: fix y
   if (accX < -8) {
     switch (color) {
       case 'red':
@@ -70,12 +74,11 @@ function draw() {
         gif = createImg('./B1.gif'); break;
         */
     }
-    //gif.position(out_angle - 400, 140);
-    gif.position(out_angle - 250, 250);
+    gif.position(out_angle - 180, 200);
   }
 
   if (isSave === true) {
-    //saveCanvas('myCanva', 'jpg');
+    saveCanvas('myCanva', 'jpg');
     isSave = false;
   }
 
