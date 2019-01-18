@@ -53,8 +53,10 @@ function map(input, x1, x2, y1, y2){
 function draw() {
   clear();
   background(255);
-  out_angle = map(c, -80, 80, 0, 720);
-  ellipse(out_angle, 240, 30, 30);
+  out_angle = map(a, -80, 80, 0, 720); //this is for y orientation
+  ellipse(out_angle, 30, 30); //TEST: fix x
+
+  //TEST: fix y
   if (accX < -8) {
     switch (color) {
       case 'red':
