@@ -61,8 +61,15 @@ function draw() {
         gif = createImg('./R1.gif'); break;
       case 'yellow':
         gif = createImg('./Y1.gif'); break;
+
+        // add case for blue
+        /*
+      case 'blue':
+        gif = createImg('./B1.gif'); break;
+        */
     }
-    gif.position(out_angle - 400, 140);
+    //gif.position(out_angle - 400, 140);
+    gif.position(out_angle - 250, 250);
   }
 
   if (isSave === true) {
