@@ -40,7 +40,7 @@
     var color="red", isSave=false, isLock = false;  
     
     // add accel variable
-    var accX;
+    var accX, accZ;
 
 
     window.addEventListener("deviceorientation", orientationHandler, false);
@@ -66,6 +66,8 @@
           beta: Math.round(b5/ times),
           gamma: Math.round(c5/times),
           accX: Math.round(accX),
+          accZ: Math.round(accZ),
+
           color: color,
           isSave: isSave,
           isLock: isLock,
@@ -82,6 +84,7 @@
     window.addEventListener("devicemotion", motionHandler, false);
     function motionHandler(event){
       accX = event.acceleration.x;
+      accZ = event.acceleration.z;
       acc.innerHTML = accX + "m/s2";
 
       // sumAccX += accX;
