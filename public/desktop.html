@@ -10,6 +10,7 @@
   <script src="./p5.min.js"></script>
   <script src="./p5.dom.min.js"></script>
   <script src="./drawInfo.js"></script>
+  <script src="./jquery-3.3.1.min.js"></script>
   
 
 </head>
@@ -18,7 +19,7 @@
   <div>
     <h1>Paint!</h1>
     <a class="button">Save</a>
-    <a class="button">Refresh</a>
+    <a class="button" onClick="refresh()">Refresh</a>
   </div>
 
   <div id="container">
@@ -30,7 +31,7 @@
 
   <!-- Client Code -->
   <script type="text/javascript">
-    var socket = io();
+    var socket = io(); //connects to the Socket.io server and creates the client socket  obj
     var a, b, c, x, y, accX, color, id;
 
     var arrow = document.getElementById("arrow");
@@ -50,6 +51,16 @@
     }, 50);
 
   </script>
+
+  <script>
+    function refresh(){
+          $(document).ready(function(){
+        $('img').remove();
+    })
+    }
+
+  </script>
+
 
 </body>
 
