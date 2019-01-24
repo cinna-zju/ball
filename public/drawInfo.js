@@ -6,7 +6,7 @@ window.onload = function(){
   let id;
 
   socket = io();
-  socket.on('get', function (msg) {
+  socket.on('user1', function (msg) {
     id = msg.id;
     color = msg.color;
     if (msg.id !== null) {

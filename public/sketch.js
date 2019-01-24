@@ -84,20 +84,30 @@ function draw() {
   if (accX1 < -5) { //reduce accel threshold!
     switch (color1) {
       case 'red':
-        if (accZ1 > 3) {
-          gif1 = createImg('.GIF/R right.gif');
-        } else {
-          gif1 = createImg('./R1.gif');
-        }
+        if(a1<=90)
+          gif1 = createImg('./gif/RC.gif');
+        else if(a1 >=200)
+          gif1 = createImg('./gif/RL.gif'); 
+        else
+          gif1 = createImg('./gif/RR.gif');
         break;
       case 'yellow':
-        gif1 = createImg('./Y1.gif'); break;
-
-        // add case for blue
-        /*
+        if (a1 <= 90)
+          gif1 = createImg('./gif/YC.gif');
+        else if (a1 >= 200)
+          gif1 = createImg('./gif/YL.gif');
+        else
+          gif1 = createImg('./gif/YR.gif');
+        break;
+      
       case 'blue':
-        gif = createImg('./B1.gif'); break;
-        */
+        if (a1 <= 90)
+          gif1 = createImg('./gif/BC.gif');
+        else if (a1 >= 200)
+          gif1 = createImg('./gif/BL.gif');
+        else
+          gif1 = createImg('./gif/BR.gif');
+        break;
     }
     gif1.position(out_angleX1 - 180, out_angleY1);
   }
@@ -105,20 +115,31 @@ function draw() {
   if (accX2 < -5) { //reduce accel threshold!
     switch (color2) {
       case 'red':
-        if (accZ2 > 3) {
-          gif2 = createImg('.GIF/R right.gif');
-        } else {
-          gif2 = createImg('./R1.gif');
-        }
+        if (a2 <= 90)
+          gif2 = createImg('./gif/RC.gif');
+        else if (a2 >= 200)
+          gif2 = createImg('./gif/RL.gif');
+        else
+          gif2 = createImg('./gif/RR.gif');
         break;
+      
       case 'yellow':
-        gif2 = createImg('./Y1.gif'); break;
-
-        // add case for blue
-        /*
+        if (a2 <= 90)
+          gif2 = createImg('./gif/YC.gif');
+        else if (a2 >= 200)
+          gif2 = createImg('./gif/YL.gif');
+        else
+          gif2 = createImg('./gif/YR.gif');
+        break;
+      
       case 'blue':
-        gif = createImg('./B1.gif'); break;
-        */
+        if (a2 <= 90)
+          gif2 = createImg('./gif/BC.gif');
+        else if (a2 >= 200)
+          gif2 = createImg('./gif/BL.gif');
+        else
+          gif2 = createImg('./gif/BR.gif');
+        break;
     }
     gif2.position(out_angleX2 - 180, out_angleY2);
   }
@@ -128,7 +149,5 @@ function draw() {
     isSave = false;
   }
 
-
-  
 }
 
