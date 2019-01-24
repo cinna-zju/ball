@@ -1,6 +1,6 @@
 
 var socket; 
-var a1, b1, c1, a2, b2, c2, angle, slope, color, isSave, out_angleX1, out_angleY, accZ;
+var a1, b1, c1, a2, b2, c2, angle, slope, color, isSave, out_angleX, out_angleY, accZ;
 let isLock;
 var id1 = "", id2 = "";
 
@@ -60,10 +60,10 @@ function draw() {
   background(255);
   if (isLock == false) {
     if(a >=0 && a<=90){
-      out_angleX1 = map(a, 90, 0, 0, 400); //initial range across alpha (0, 400)
+      out_angleX = map(a, 90, 0, 0, 400); //initial range across alpha (0, 400)
     }
     if(a <= 360 && a >= 270){
-    out_angleX1 = map(a, 360, 270, 400, 800);
+    out_angleX = map(a, 360, 270, 400, 800);
 
     }
     out_angleY = map(b, 80, -80, 0, 500);
@@ -77,25 +77,42 @@ function draw() {
     ellipse(out_angleX2, 240, 30, 30);  
  ellipse(400, out_angleY, 30, 30);    // test y-axis range */
 
-  ellipse(out_angleX1, out_angleY, 30, 30);
-  // ellipse(0,0,30,30);
+  ellipse(out_angleX, out_angleY, 30, 30);
 
 
   if (accX < -5) { //reduce accel threshold!
     switch (color) {
       case 'red':
-        
-        gif = createImg('./R1.gif'); break;
+        if(a<=90)
+          gif = createImg('./gif/RC.gif');
+        else if(a >=200)
+          gif = createImg('./gif/RL.gif'); 
+        else
+          gif = createImg('./gif/RR.gif');
+
+        break;
       case 'yellow':
-        gif = createImg('./Y1.gif'); break;
+        //gif = createImg('./Y1.gif'); 
+        if(a<=90)
+          gif = createImg('./gif/YC.gif');
+        else if(a >=200)
+          gif = createImg('./gif/YL.gif'); 
+        else
+          gif = createImg('./gif/YR.gif');
+
+        break;
 
         // add case for blue
-        /*
       case 'blue':
-        gif = createImg('./B1.gif'); break;
-        */
+        if(a<=90)
+          gif = createImg('./gif/BC.gif');
+        else if(a >=200)
+          gif = createImg('./gif/BL.gif'); 
+        else
+          gif = createImg('./gif/BR.gif');
     }
-    gif.position(out_angleX1 - 180, out_angleY);
+
+    gif.position(out_angleX - 180, out_angleY);
   }
 
   if (isSave === true) {
