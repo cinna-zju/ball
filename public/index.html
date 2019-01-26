@@ -5,6 +5,8 @@
   <meta charset="utf-8">
   <title>SocketIO Client</title>
   <script src="/socket.io/socket.io.js"></script>
+  <script src="./lib/jquery-3.3.1.min.js"></script>
+
   <link rel="stylesheet" type="text/css" href="./css/index.css">
 </head>
 
@@ -24,7 +26,7 @@
   </div>
 
   <div>
-    <button id='lock' onClick='lock()'><p>lock</p></button>
+    <button id='lock' onClick='lock()'>Lock</button>
   </div>
 
   <!-- Client Code -->
@@ -92,6 +94,12 @@
 
     function lock(){
       isLock = !isLock;
+      if(isLock){
+        $("#lock").html('Unlock');
+      }else{
+        $("#lock").html('Lock');
+
+      }
 
     }
   </script>

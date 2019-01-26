@@ -39,8 +39,8 @@ function draw() {
   fill("#006284");
   noStroke();
   textSize(100);
-  textFont("monospace");
-  text('Paint!', 20, 80);
+  // textFont("monospace");
+  text('Splaaash！', 20, 80);
   if (isLock1 === false) {
     if (a1 >= 0 && a1 <= 90) {
       out_angleX1 = map(a1, 90, 0, 0, 400); //initial range across alpha (0, 400)

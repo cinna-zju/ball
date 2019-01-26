@@ -6,6 +6,8 @@
   <title>SocketIO Client</title>
   <script src="/socket.io/socket.io.js"></script>
   <link rel="stylesheet" type="text/css" href="./css/index.css">
+  <script src="./lib/jquery-3.3.1.min.js"></script>
+
 </head>
 
 <body>
@@ -107,6 +109,13 @@
 
     function lock(){
       isLock = !isLock;
+      if(isLock){
+        $("#lock").html('Unlock');
+      }else{
+        $("#lock").html('Lock');
+
+      }
+
 
     }
   </script>
