@@ -1,14 +1,14 @@
 var socket; 
-var a1, b1, c1, color1, out_angleX1, out_angleY1, accX1, accZ1;
-var a2, b2, c2, color2, out_angleX2, out_angleY2, accX2, accZ2; 
+var a1, b1, c1, out_angleX1, out_angleY1, accX1, accZ1, color1="red";
+var a2, b2, c2, out_angleX2, out_angleY2, accX2, accZ2, color2="red"; 
 let isLock1, isLock2;
+
 
 var gif1, gif2;
 
 function setup() {
-  var myCanvas = createCanvas(800, 500);
+  var myCanvas = createCanvas(800, 700);
   myCanvas.parent('canvas');
-  color = 'red';
   socket = io();
   out_angleX1 = 400;
   out_angleY = 250;
@@ -36,6 +36,11 @@ function setup() {
 function draw() {
   clear();
   background(255);
+  fill("#006284");
+  noStroke();
+  textSize(100);
+  textFont("monospace");
+  text('Paint!', 20, 80);
   if (isLock1 === false) {
     if (a1 >= 0 && a1 <= 90) {
       out_angleX1 = map(a1, 90, 0, 0, 400); //initial range across alpha (0, 400)
@@ -55,48 +60,53 @@ function draw() {
     }
     out_angleY2 = map(b2, 80, -80, 0, 500);
   }
-
+  fill(color1);
+  noStroke();
   ellipse(out_angleX1, out_angleY1, 30, 30);
+
+  fill(color2);
+  noStroke();
   rect(out_angleX2, out_angleY2, 30, 30);
 
   if (accX1 < -5) { //reduce accel threshold!
     gif1 = getGif(color1, a1);
-    gif1.position(out_angleX1 - 180, out_angleY1);
+    gif1.position(out_angleX1 - 100, out_angleY1+50);
   }
   
 
   if (accX2 < -5) { //reduce accel threshold!
     gif2 = getGif(color2, a2);
-    gif2.position(out_angleX2 - 180, out_angleY2);
+    gif2.position(out_angleX2 - 100, out_angleY2+50);
   }
 }
   
 function getGif(color, a) {
   switch (color) {
     case 'red':
-      if (a <= 90)
+      if (abs(360-a) <= 90)
         return createImg('./gif/RC.gif');
-      else if (a >= 200)
+      else if (a >= 30 && a <= 90)
         return createImg('./gif/RL.gif');
-      else
+      else if(a > 90 && a <= 220)
         return createImg('./gif/RR.gif');
       
     case 'yellow':
-      if (a <= 90)
-        return createImg('./gif/YC.gif');
-      else if (a >= 200)
-        return createImg('./gif/YL.gif');
-      else
-        return createImg('./gif/YR.gif');
+    if (abs(360-a) <= 90)
+      return createImg('./gif/YC.gif');
+    else if (a >= 30 && a <= 90)
+      return createImg('./gif/YL.gif');
+    else if(a > 90 && a <= 220)
+      return createImg('./gif/YR.gif');
+
     
     case 'blue':
-      if (a <= 90)
-        return createImg('./gif/BC.gif');
-      else if (a >= 200)
-        return createImg('./gif/BL.gif');
-      else
-        return createImg('./gif/BR.gif');
-  
+    if (abs(360-a) <= 90)
+      return createImg('./gif/BC.gif');
+    else if (a >= 30 && a <= 90)
+      return createImg('./gif/BL.gif');
+    else if(a > 90 && a <= 220)
+      return createImg('./gif/BR.gif');
+
   }
 }
 

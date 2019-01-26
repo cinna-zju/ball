@@ -30,9 +30,8 @@ p{
   text-align:center;
   transition: all 0.2s;
 
-  position: relative;
-  left: 680px;
-  top: -10px;
+  position: absolute;
+  left: 950px;
 }
 
 .button:hover{
@@ -51,16 +50,15 @@ p{
 
 #canvas{
   width: 800px;
-  height: 500px;
+  height: 700px;
   display: inline-block;
   border: 2px solid #FFFFFF;
-
 
 }
 
 #info{
   width: 400px;
-  height: 500px;
+  height: 650px;
   display: inline-block;
   position: relative;
   left: 70px;

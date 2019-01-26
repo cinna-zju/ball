@@ -18,9 +18,9 @@
     <p>Color Palette</p>
   </div>
   <div>
-    <button id='red' onClick='changeColor(this.id)'></button>
-    <button id='yellow' onClick="changeColor(this.id)"></button>
-    <button id='blue' onClick="changeColor(this.id)"></button>
+    <button id="red" onClick='changeColor(this.id)'></button>
+    <button id="orange" onClick="changeColor(this.id)"></button>
+    <button id="blue" onClick="changeColor(this.id)"></button>
   </div>
 
   <div>
@@ -43,11 +43,9 @@
 
     window.addEventListener("deviceorientation", orientationHandler, false);
     function orientationHandler(event) {
-      // text = "";
       a = event.alpha;
       b = event.beta;
       c = event.gamma;
-      // accX = event.acceleration.x;
 
       a5+=a;
       b5+=b;
@@ -85,25 +83,11 @@
       accZ = event.acceleration.z;
       acc.innerHTML = accX + "m/s2";
 
-      // sumAccX += accX;
-      // t += 1.0;
-
-      // if(t > 7.0){
-      //   socket.emit('listener',{
-      //     id: socket.id,
-      //     accX: Math.round(accX/t),
-      //   });
-      //   sumAccX = t = 0;
-      // }
     }
 
 
     function changeColor(id){
       color = id; 
-    }
-
-    function save(){
-      isSave = true;
     }
 
     function lock(){
