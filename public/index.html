@@ -5,20 +5,18 @@
   <meta charset="utf-8">
   <title>SocketIO Client</title>
   <script src="/socket.io/socket.io.js"></script>
-  <link rel="stylesheet" type="text/css" href="index.css">
+  <link rel="stylesheet" type="text/css" href="./css/index.css">
 </head>
 
 <body>
   <div id="arrow"></div>
   <div id="acc"></div>
 
-  <div>
-    <button id='save' onClick='save()'>Save</button>
-  </div>
-  
-
 
   <!-- <canvas id="gl" width="640" height="480"></canvas> -->
+  <div>
+    <p>Color Palette</p>
+  </div>
   <div>
     <button id='red' onClick='changeColor(this.id)'></button>
     <button id='yellow' onClick="changeColor(this.id)"></button>
@@ -26,7 +24,7 @@
   </div>
 
   <div>
-    <button id='lock' onClick='lock()'>lock</button>
+    <button id='lock' onClick='lock()'><p>lock</p></button>
   </div>
 
   <!-- Client Code -->

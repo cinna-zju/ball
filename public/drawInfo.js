@@ -3,18 +3,28 @@ window.onload = function(){
   var ctx = canvas.getContext("2d");
   var socket;
 
-  let id;
-
   socket = io();
   socket.on('user1', function (msg) {
-    id = msg.id;
-    color = msg.color;
     if (msg.id !== null) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.fillText("Connected!" + msg.id, 0, 30);
-      
+      ctx.fillStyle = 'white';
+
       ctx.rect(10, 30, 50, 50);
-      ctx.fillStyle = color;
+      ctx.fillStyle = msg.color;
+      ctx.fill();
+
+    }
+  })
+
+  socket.on('user2', function (msg) {
+    if (msg.id !== null) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillText("Connected!" + msg.id, 0, 100);
+      ctx.fillStyle = 'white';
+      
+      ctx.rect(10, 100, 50, 50);
+      ctx.fillStyle = msg.color;
       ctx.fill();
 
     }
