@@ -6,46 +6,21 @@ window.onload = function () {
   var socket;
   // var c1 = 'red', c2 = 'red';
   var c1, c2;
+  var mark = false;
 
   socket = io();
 
   socket.on('user1', function (msg) {
-    if (msg.id !== null) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height); 
-      
-      ctx.fillText("Connected!" + msg.id, 0, 30);
-      // ctx.fillStyle = 'white';
-      // ctx.fill();
+    if (msg.id !== null && mark === false) {
 
-      // c1 = msg.color;
-      // ctx.fillStyle = c1;
-      // ctx.fillRect(10, 30, 50, 50);
-      
-
-      // ctx.fillStyle = c2;
-      // ctx.fillRect(10, 100, 50, 50);
-
+      var imageObj = new Image();
+      imageObj.onload = function() {
+        ctx.drawImage(this, 0, 0);
+      };    
+      imageObj.src = "tutor.gif";
+      mark = true;
     }
   })
-
-  socket.on('user2', function (msg) {
-    if (msg.id !== null) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height); 
-      ctx.fillText("Connected!" + msg.id, 0, 100);
-      // ctx.fillStyle = 'white';
-      // ctx.fill();
-
-      // ctx.fillStyle = c1;
-      // ctx.fillRect(10, 30, 50, 50);
-      
-      
-      // c2 = msg.color;
-      // ctx.fillStyle = c2;
-      // ctx.fillRect(10, 100, 50, 50);
-
-    }
-  })
-
 
   canvas.width = 400;//horizontal resolution (?) - increase for better looking text
   canvas.height = 650;//vertical resolution (?) - increase for better looking text
@@ -65,5 +40,5 @@ window.onload = function () {
   ctx.fillStyle = "#f9d92a";
 
 
-  ctx.fillText("No data. Connect your phone.", 0, 30);
+  ctx.fillText("No data. Please connect your phone.", 0, 30);
 }

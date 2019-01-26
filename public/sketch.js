@@ -3,8 +3,9 @@ var a1, b1, c1, out_angleX1, out_angleY1, accX1, accZ1, color1="red";
 var a2, b2, c2, out_angleX2, out_angleY2, accX2, accZ2, color2="red"; 
 let isLock1, isLock2;
 
-
 var gif1, gif2;
+
+
 
 function setup() {
   var myCanvas = createCanvas(800, 700);
@@ -12,6 +13,10 @@ function setup() {
   socket = io();
   out_angleX1 = 400;
   out_angleY = 250;
+
+  gif1 = createImg('./gif/RC.gif');
+  gif2 = createImg('./gif/RC.gif');
+  
   socket.on('user1', function (msg) {
     a1 = msg.alpha;
     b1 = msg.beta;
@@ -69,43 +74,49 @@ function draw() {
   rect(out_angleX2, out_angleY2, 30, 30);
 
   if (accX1 < -5) { //reduce accel threshold!
-    gif1 = getGif(color1, a1);
-    gif1.position(out_angleX1 - 100, out_angleY1+50);
+    gif1 = createImg(getGif(color1, a1));
+    gif1.class('ink');
+    var x = out_angleX1;
+    var y = out_angleY1;
+    gif1.position(x - 100, y+50);
+
   }
   
 
   if (accX2 < -5) { //reduce accel threshold!
     gif2 = getGif(color2, a2);
     gif2.position(out_angleX2 - 100, out_angleY2+50);
+
   }
+
 }
   
 function getGif(color, a) {
   switch (color) {
     case 'red':
-      if (abs(360-a) <= 90)
-        return createImg('./gif/RC.gif');
-      else if (a >= 30 && a <= 90)
-        return createImg('./gif/RL.gif');
-      else if(a > 90 && a <= 220)
-        return createImg('./gif/RR.gif');
+      if (a >= 30 && a <= 90)
+        return './gif/RL.gif';
+      if (a > 90 && a <= 220)
+        return './gif/RR.gif';
+      return './gif/RC.gif';
       
-    case 'yellow':
-    if (abs(360-a) <= 90)
-      return createImg('./gif/YC.gif');
-    else if (a >= 30 && a <= 90)
-      return createImg('./gif/YL.gif');
-    else if(a > 90 && a <= 220)
-      return createImg('./gif/YR.gif');
+      
+    case 'orange':
+    if (a >= 30 && a <= 90)
+      return './gif/YL.gif';
+    if (a > 90 && a <= 220)
+      return './gif/YR.gif';
+    return './gif/YC.gif';
+
 
     
     case 'blue':
-    if (abs(360-a) <= 90)
-      return createImg('./gif/BC.gif');
-    else if (a >= 30 && a <= 90)
-      return createImg('./gif/BL.gif');
-    else if(a > 90 && a <= 220)
-      return createImg('./gif/BR.gif');
+      if (a >= 30 && a <= 90)
+        return './gif/BL.gif';
+      if (a > 90 && a <= 220)
+        return './gif/BR.gif';
+      return './gif/BC.gif';
+
 
   }
 }

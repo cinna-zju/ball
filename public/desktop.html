@@ -9,10 +9,8 @@
   <script src="./sketch.js"></script>
   <script src="./lib/p5.min.js"></script>
   <script src="./lib/p5.dom.min.js"></script>
-  <script src="./drawInfo.js"></script>
+  <!-- <script src="./drawInfo.js"></script> -->
   <script src="./lib/jquery-3.3.1.min.js"></script>
-  
-
 </head>
 
 <body>
@@ -23,7 +21,10 @@
 
   <div id="container">
     <div id="canvas"></div>
-    <canvas id="info"></canvas>
+    <div id="info">
+      <p id="text">Please connect your phone!</p>
+      <img class='intro' src='wifi.png' />
+    </div>
     <a class="button" onClick="refresh()">Refresh</a>
 
     <div id="arrow"><p>No data.</p></div>
@@ -33,29 +34,38 @@
   <script type="text/javascript">
     var socket = io(); //connects to the Socket.io server and creates the client socket  obj
     var a, b, c, x, y, accX, color, id;
-
+    var isConnected = false;
     var arrow = document.getElementById("arrow");
     socket.on('user1', function (msg) {
-      //console.log(msg);
-      id = msg.id;
-      a = msg.alpha;
-      b = msg.beta;
-      c = msg.gamma;
-      //added for accel
-      accX = msg.accX;
-      color = msg.color;
+      // //console.log(msg);
+      // id = msg.id;
+      // a = msg.alpha;
+      // b = msg.beta;
+      // c = msg.gamma;
+      // //added for accel
+      // accX = msg.accX;
+      // color = msg.color;
+      if(isConnected === false){
+        $(document).ready(()=>{
+          $(".intro").attr("src","tutors.gif");
+          $("#text").html("Connected!")
+        })
+      }
+      
+      isConnected =true;
+
     })
 
-    setInterval(()=>{
-      arrow.innerHTML = id + "alpha: " + a + "beta: " + b +"gamma:"+c +"acc_x:"+accX + "color: "+ color;
-    }, 50);
+    // setInterval(()=>{
+    //   arrow.innerHTML = id + "alpha: " + a + "beta: " + b +"gamma:"+c +"acc_x:"+accX + "color: "+ color;
+    // }, 50);
 
   </script>
 
   <script>
     function refresh(){
       $(document).ready(function(){
-      $('img').remove();
+      $('.ink').remove();
     })
     }
 
