@@ -76,16 +76,17 @@ function draw() {
   if (accX1 < -5) { //reduce accel threshold!
     gif1 = createImg(getGif(color1, a1));
     gif1.class('ink');
-    var x = out_angleX1;
-    var y = out_angleY1;
-    gif1.position(x - 100, y+50);
+
+    gif1.position(out_angleX1 - 100, out_angleY1-50);
 
   }
   
 
   if (accX2 < -5) { //reduce accel threshold!
-    gif2 = getGif(color2, a2);
-    gif2.position(out_angleX2 - 100, out_angleY2+50);
+    gif2 = createImg(getGif(color2, a2));
+    gif2.class('ink');
+
+    gif2.position(out_angleX2 - 100, out_angleY2-50);
 
   }
 
