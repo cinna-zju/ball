@@ -5,31 +5,32 @@
   <meta charset="utf-8">
   <title>SocketIO Client</title>
   <script src="/socket.io/socket.io.js"></script>
-  <link rel="stylesheet" type="text/css" href="./css/index.css">
   <script src="./lib/jquery-3.3.1.min.js"></script>
 
+  <link rel="stylesheet" type="text/css" href="./css/index.css">
 </head>
 
 <body>
-  <div id="arrow"></div>
-  <div id="acc"></div>
-
-  <div>
-    <button id='save' onClick='save()'>Save</button>
-  </div>
-  
+  <!-- <div id="arrow"></div>
+  <div id="acc"></div> -->
 
 
   <!-- <canvas id="gl" width="640" height="480"></canvas> -->
-  <div>
-    <button id="red" onClick='changeColor(this.id)'></button>
-    <button id="orange" onClick="changeColor(this.id)"></button>
-    <button id="blue" onClick="changeColor(this.id)"></button>
+
+  <div id='container'>
+    <div id='left'>
+      <img src='logo.png' width='100%'/>
+      <button id='lock' onClick='lock()'>Lock</button>
+    </div>
+    <div id='btns'>
+      <button id="red" onClick='changeColor(this.id)'></button>
+      <button id="orange" onClick="changeColor(this.id)"></button>
+      <button id="blue" onClick="changeColor(this.id)"></button>
+    </div>
+
   </div>
 
-  <div>
-    <button id='lock' onClick='lock()'>lock</button>
-  </div>
+
 
   <!-- Client Code -->
   <script type="text/javascript">
@@ -39,40 +40,37 @@
     var arrow = document.getElementById("arrow");
     var a, b, c;
     var a5 = 0, b5 = 0, c5 = 0, times = 0;
-    var color="red", isSave=false, isLock = false;  
-    
+    var color = "red", isSave = false, isLock = false;
+
     // add accel variable
-    var accX;
+    var accX, accZ;
 
 
     window.addEventListener("deviceorientation", orientationHandler, false);
     function orientationHandler(event) {
-      // text = "";
       a = event.alpha;
       b = event.beta;
       c = event.gamma;
-      // accX = event.acceleration.x;
 
-      a5+=a;
-      b5+=b;
-      c5+=c;
+      a5 += a;
+      b5 += b;
+      c5 += c;
       times += 1.0;
-      // text += "左右旋转：rotate alpha{" + a + "deg)<p>";
-      // text += "前后旋转：rotate beta{" + b + "deg)<p>";
-      // text += "扭转设备：rotate gamma{" + c + "deg)<p>";
-      // arrow.innerHTML = text;
 
-       if(times > 7.0){
-        socket.emit('user2', {id: socket.id,
-          alpha: Math.round(a5/times), 
-          beta: Math.round(b5/ times),
-          gamma: Math.round(c5/times),
+      if (times > 7.0) {
+        socket.emit('user2', {
+          id: socket.id,
+          alpha: Math.round(a5 / times),
+          beta: Math.round(b5 / times),
+          gamma: Math.round(c5 / times),
           accX: Math.round(accX),
+          accZ: Math.round(accZ),
+
           color: color,
           isSave: isSave,
           isLock: isLock,
 
-      });
+        });
         a5 = b5 = c5 = times = 0;
       }
 
@@ -82,40 +80,26 @@
     var t = 0;
 
     window.addEventListener("devicemotion", motionHandler, false);
-    function motionHandler(event){
+    function motionHandler(event) {
       accX = event.acceleration.x;
-      acc.innerHTML = accX + "m/s2";
+      accZ = event.acceleration.z;
+      // acc.innerHTML = accX + "m/s2";
 
-      // sumAccX += accX;
-      // t += 1.0;
-
-      // if(t > 7.0){
-      //   socket.emit('listener',{
-      //     id: socket.id,
-      //     accX: Math.round(accX/t),
-      //   });
-      //   sumAccX = t = 0;
-      // }
     }
 
 
-    function changeColor(id){
-      color = id; 
+    function changeColor(id) {
+      color = id;
     }
 
-    function save(){
-      isSave = true;
-    }
-
-    function lock(){
+    function lock() {
       isLock = !isLock;
-      if(isLock){
+      if (isLock) {
         $("#lock").html('Unlock');
-      }else{
+      } else {
         $("#lock").html('Lock');
 
       }
-
 
     }
   </script>

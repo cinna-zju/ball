@@ -8,14 +8,15 @@ var gif1, gif2;
 
 
 function setup() {
-  var myCanvas = createCanvas(800, 700);
+  var myCanvas = createCanvas(1000, 800);
   myCanvas.parent('canvas');
   socket = io();
   out_angleX1 = 400;
   out_angleY = 250;
 
-  gif1 = createImg('./gif/RC.gif');
-  gif2 = createImg('./gif/RC.gif');
+  accX1 = accX2 = 0;
+  gif1 = createImg('');
+  gif2 = createImg('');
   
   socket.on('user1', function (msg) {
     a1 = msg.alpha;
@@ -41,11 +42,11 @@ function setup() {
 function draw() {
   clear();
   background(255);
-  fill("#006284");
-  noStroke();
-  textSize(100);
+  // fill("#006284");
+  // noStroke();
+  // textSize(100);
   // textFont("monospace");
-  text('Splaaash！', 20, 80);
+  // text('Splash！', 20, 80);
   if (isLock1 === false) {
     if (a1 >= 0 && a1 <= 90) {
       out_angleX1 = map(a1, 90, 0, 0, 400); //initial range across alpha (0, 400)
@@ -73,7 +74,7 @@ function draw() {
   noStroke();
   rect(out_angleX2, out_angleY2, 30, 30);
 
-  if (accX1 < -5) { //reduce accel threshold!
+  if (accX1 < -10) { //reduce accel threshold!
     gif1 = createImg(getGif(color1, a1));
     gif1.class('ink');
 
@@ -82,12 +83,11 @@ function draw() {
   }
   
 
-  if (accX2 < -5) { //reduce accel threshold!
+  if (accX2 < -10) { //reduce accel threshold!
     gif2 = createImg(getGif(color2, a2));
     gif2.class('ink');
 
     gif2.position(out_angleX2 - 100, out_angleY2-50);
-
   }
 
 }
@@ -95,13 +95,12 @@ function draw() {
 function getGif(color, a) {
   switch (color) {
     case 'red':
-      if (a >= 30 && a <= 90)
+      if (a >= 30 && a <= 100)
         return './gif/RL.gif';
-      if (a > 90 && a <= 220)
+      if (a > 100 && a <= 220)
         return './gif/RR.gif';
       return './gif/RC.gif';
-      
-      
+            
     case 'orange':
     if (a >= 30 && a <= 90)
       return './gif/YL.gif';
@@ -109,15 +108,12 @@ function getGif(color, a) {
       return './gif/YR.gif';
     return './gif/YC.gif';
 
-
-    
     case 'blue':
       if (a >= 30 && a <= 90)
         return './gif/BL.gif';
       if (a > 90 && a <= 220)
         return './gif/BR.gif';
       return './gif/BC.gif';
-
 
   }
 }

@@ -1,70 +1,84 @@
 body{
-  background-color: #006284;
+  background-color: #000;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  margin: 4em;
 }
+
+
 
 h1{
   display: inline-block;
   color: #ffffff;
-  font-size: 48pt; 
+  font-size: 40pt; 
 }
 
 p{
   display: inline-block;
   color: #ffffff;
-  font-size:18pt;
+  font-size:14pt;
 }
 
 .button{
   display:inline-block;
   padding:0.35em 1.2em;
-  border:0.1em solid #FFFFFF;
-  margin:0 0.3em 0.3em 0;
+  border:0.1em solid #fff;
   border-radius:0.12em;
   box-sizing: border-box;
   text-decoration:none;
   font-weight:300;
   font-size: 12pt;
-  color:#FFFFFF;
+  color:#fff;
   text-align:center;
   transition: all 0.2s;
-
-  position: absolute;
-  left: 950px;
+  width: 150px;
+  margin-right: 1em;
 }
 
 .button:hover{
-  color:#006284;
-  background-color:#FFFFFF;
+  color:#000;
+  background-color:#fff;
 
 }
 
-@media all and (max-width: 30em){
+/* @media all and (max-width: 30em){
  .button{
   display:block;
   margin:0.4em auto
  }
-}
+} */
 
 
 #canvas{
-  width: 800px;
-  height: 700px;
-  display: inline-block;
-  border: 2px solid #FFFFFF;
-
+  width: 1000px;
+  height: 800px;
+  float: left;
+  /* background: # */
 }
 
 #info{
   width: 400px;
-  height: 650px;
-  display: inline-block;
-  position: relative;
-  left: 70px;
+  height: 800px;
+  float: right;
+  background: #221e31;
+  text-align: center;
+
 }
 
 #container{
-  width: 1300px;
-  height: 450px;
+  width: 1400px;
+  height: 800px;
 }
+
+#text{
+  color: #fff;
+
+}
+
+
+#logo{
+  background-color: #000
+}
+#alignleft{
+  text-align: left;
+  margin: 0 1.5em;
+}
+

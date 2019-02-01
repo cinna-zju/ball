@@ -9,25 +9,43 @@
   <script src="./sketch.js"></script>
   <script src="./lib/p5.min.js"></script>
   <script src="./lib/p5.dom.min.js"></script>
-  <!-- <script src="./drawInfo.js"></script> -->
   <script src="./lib/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
-  <div>
-    <!-- <h1>Paint!</h1> -->
-    <!-- <a class="button">Save</a> -->
-  </div>
 
   <div id="container">
     <div id="canvas"></div>
     <div id="info">
-      <p id="text">Please connect your phone!</p>
-      <img class='intro' src='wifi.png' />
-    </div>
-    <a class="button" onClick="refresh()">Refresh</a>
+      <div id='logo'>
+        <img src='logo.png' height='50' alt='splash!'></img>
+      </div>
+      <div id='alignleft'>
+        <div>
+          <p>Create your own design.</p>
 
-    <div id="arrow"><p>No data.</p></div>
+
+
+        </div>
+        <div>
+            <a class="button" onClick="refresh()">Refresh</a>
+            <a float='right' class='button'>Upload</a>
+        </div>
+        <div>
+            <p id="text">Please connect your phone.</p>
+
+        </div>
+
+
+      </div>
+
+      <img class='intro' style="vertical-align:middle" height='400' src='wifi3.png' />
+
+      <!-- <img class='intro' height='480' src='tutors.gif'/> -->
+    </div>
+
+
+    <!-- <div id="arrow"><p>No data.</p></div> -->
   </div>
 
   <!-- Client Code -->
@@ -45,14 +63,15 @@
       // //added for accel
       // accX = msg.accX;
       // color = msg.color;
-      if(isConnected === false){
-        $(document).ready(()=>{
-          $(".intro").attr("src","tutors.gif");
+      if (isConnected === false) {
+        $(document).ready(() => {
+          $(".intro").attr("src", "tutors.gif");
+          $(".intro").attr("height", "500");
           $("#text").html("Connected!")
         })
       }
-      
-      isConnected =true;
+
+      isConnected = true;
 
     })
 
@@ -63,10 +82,10 @@
   </script>
 
   <script>
-    function refresh(){
-      $(document).ready(function(){
-      $('.ink').remove();
-    })
+    function refresh() {
+      $(document).ready(function () {
+        $('.ink').remove();
+      })
     }
 
   </script>

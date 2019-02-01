@@ -1,63 +1,79 @@
 body{
   /* background-color: #7f7f7f; */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  margin: 4em;
+  margin: 1em 0.05em;
 }
 
 #red{
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
+  height: 450px;
+  width:250px;
   background-color: #ff0000;
   border: none;
-  margin: 2em;
+  margin: 0.5em 0;
+
+  
+
 }
 
 #blue{
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
+  height: 450px;
+  width: 250px;
   background-color: #0050ff;
   border: none;
-  margin: 2em;
+  margin: 0.5em 0;
 
 
 }
 
 #orange{
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
+  height: 450px;
+  width: 250px;
   background-color: #ff8d00;
   border: none;
-  margin: 2em;
+  margin: 0.5em 0;
+
+
 }
 
 #lock{
   width: 100%;
-  height: 800px;
-  background-color: aqua;
+  height: 1150px;
+  background-color: #7890d2;
   border: none;
   font-size: 110pt;
-
+  color: white;
+  margin: 0.1em;
+   
 }
 
 button{
-  display:inline-block;
+  /* display:inline-block; */
   padding:0.35em 1.2em;
   border:0.1em solid #000000;
-  margin:0 0.3em 0.3em 0;
+  /* margin:0 0.3em 0.3em 0; */
   border-radius:0.12em;
-  box-sizing: border-box;
-  text-decoration:none;
-  font-weight:300;
-  font-size: 12pt;
-  color:#000000;
   text-align:center;
-  transition: all 0.2s;
+  font-size:25pt;
+  color:grey;
 
 }
 
-p{
-  font-size:20pt;
+
+#container{
+  width: 100%;
+  height: 1400px;
+}
+
+#left{
+  width: 700px;
+  height: 1400px;
+  float: left;
+}
+
+#btns{
+  width: 250px;
+  height: 1400px;
+  float: right;
+
+
 }
